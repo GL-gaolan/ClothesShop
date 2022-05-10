@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>S'H CLOTHES STORE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!--	<link href="/static/css/non-responsive.css" rel="stylesheet" />-->
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">S'H CLOTHES STORE</a>
+            <a class="navbar-brand" href="#">welcome admin</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" th:href="@{/admin/adminpro/add}">Add a new product</a></li>
+            <li><a href="#" th:href="@{/admin/adminpro/clothesList}">View all product</a></li>
+            <li><a href="#" th:href="@{/}">Sign out</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+
+    <div class="row" style="margin-left: 70px;">
+        <h2 style="margin-left: 8px;">Welcome admin!</h2>
+        <h2 style="margin-left: 8px;"> please manage product information</h2>
+        <div class="col-xs-8">
+            <img class="img-responsive" src="/image/admin.png"/>
+        </div>
+    </div>
+
+</div>
+
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>

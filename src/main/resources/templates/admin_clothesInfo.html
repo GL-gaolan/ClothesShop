@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>S'H CLOTHES STORE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">S'H CLOTHES STORE</a>
+            <a class="navbar-brand" href="#">welcome admin</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" th:href="@{adminpro/add}">Add a new product</a></li>
+            <li><a href="#" th:href="@{/admin/adminpro/clothesList}">View all product</a></li>
+            <li><a href="#" th:href="@{/}">Sign out</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/admin/adminpro/clothesList}">Go back</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/admin/adminpro/updateClothes?id=}+${clothes.id}">Edit</a></li>
+        </ol>
+    </nav>
+
+        <input hidden="hidden" name="id" th:field="*{clothes.id}"/>
+        <div class="row" style="margin-top: 30px;margin-left: 60px;">
+
+            <div class="col-xs-5">
+                <img th:src="'http://localhost:8080'+ @{/image/clothes/} + ${clothes.id} +'.png'">
+            </div>
+            <div class="col-xs-7">
+                <h2 th:text="${clothes.name}"></h2>
+                <h3><strong>$<span th:text="${clothes.price}"></span></strong></h3>
+                <h4><span th:text="${clothes.description}"></span></h4>
+<!--                <button type="button" class="btn btn-secondary btn-lg" style="margin-top: 20px;"> Add to Cart </button>-->
+            </div>
+        </div>
+
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>

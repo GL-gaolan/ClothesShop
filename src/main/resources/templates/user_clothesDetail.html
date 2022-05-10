@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>S'H CLOTHES STORE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/userClothesList}">S'H CLOTHES STORE</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">CLOTHES <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/userClothesList}">all the clothes</a></li>
+                    <!--                    <li><a href="#">Store hours &#38; Directions</a></li>-->
+                    <li><a href="#">FAQ</a></li>
+
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">SEARCH <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/searchByCategory(category='shirts')}">shirts</a></li>
+                    <li><a th:href="@{/searchByCategory(category='pants')}">pants</a></li>
+                    <li><a th:href="@{/searchByCategory(category='shoes')}">shoes</a></li>
+                    <li><a th:href="@{/searchByCategory(category='coats')}">coats</a></li>
+                    <li><a th:href="@{/searchByCategory(category='skirt')}">skirt</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/ShoppingCart}">SHOPPING CART</a></li>
+<!--            <li><a href="#">MY ACCOUNT</a></li>-->
+<!--            <li><a href="#">LOGOUT</a></li>-->
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <form th:action="@{/ShoppingCart(id=${clothes.id})}" method="post">
+        <input hidden="hidden" name="id" th:value="${clothes.id}"/>
+
+        <a th:href=@{/userClothesList}><button type="button" class="btn btn-light">back to list</button></a>
+        <div class="row" style="margin-top: 30px;margin-left: 60px;">
+
+            <div class="col-xs-5">
+                <img th:src="'http://localhost:8080'+ @{/image/clothes/} + ${clothes.id} +'.png'">
+            </div>
+            <div class="col-xs-7">
+                <h2 th:text="${clothes.name}"></h2>
+                <h3><strong>$<span th:text="${clothes.price}"></span></strong></h3>
+                <h4><span th:text="${clothes.description}"></span></h4>
+
+                <button buttontype="button" class="btn btn-secondary btn-lg" style="margin-top: 20px;"> Add to Cart </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>

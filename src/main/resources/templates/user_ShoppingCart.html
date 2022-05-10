@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>S'H CLOTHES STORE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/userClothesList}">S'H CLOTHES STORE</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">CLOTHES <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/userClothesList}">all the clothes</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">SEARCH <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/searchByCategory(category='shirts')}">shirts</a></li>
+                    <li><a th:href="@{/searchByCategory(category='pants')}">pants</a></li>
+                    <li><a th:href="@{/searchByCategory(category='shoes')}">shoes</a></li>
+                    <li><a th:href="@{/searchByCategory(category='coats')}">coats</a></li>
+                    <li><a th:href="@{/searchByCategory(category='skirt')}">skirt</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">SHOPPING CART</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-6 text-left">
+                <a class="btn btn-default" th:href="@{/userClothesList}">Continue
+                    Shopping</a>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-4"><h4>Products</h4></div>
+            <div class="col-md-4"><h4>Product Info</h4></div>
+            <div class="col-md-4"><h4>Qty</h4></div>
+        </div>
+
+        <!--**************** display products in cart ****************-->
+        <form th:action="@{/Checkout}" method="post">
+            <div class="row" th:each="cartItem : ${cartAllItem}">
+                <input hidden="hidden" name="id" th:value="${cartItem.id}"/>
+                <hr/>
+                <div class="col-xs-4">
+                    <a>
+                        <img th:src="'http://localhost:8080'+ @{/image/clothes/} + ${cartItem.clothesId} +'.png'">
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <h5 style="color: #db3208; font-size: large;">
+                        <span th:text="${cartItem.itemname}"></span>
+                    </h5>
+                    <h5 style="color: #db3208; font-size: large;">
+                        $<span th:text="${cartItem.price}" name="price" th:value="${cartItem.price}"></span>
+                    </h5>
+                </div>
+                <div class="col-xs-4">
+                    <!--                    <input hidden="hidden" name="id"/>-->
+                    <input th:name="qty" class="form-control cartItemQty" th:value="1"/>
+<!--                    th:href="@{/admin/adminpro/deleteClothes(id=${clothes.id})}"-->
+                    <a th:href="@{/cartDelete(id=${cartItem.id})}"><button type="button" class="btn btn-danger" style="margin-top:30px;">delete</button></a>
+
+                </div>
+
+            </div>
+            <div class="col-xs-6 text-right" style="margin-left: 450px;">
+                <button buttontype="button" class="btn btn-secondary btn-lg" style="margin-top: 20px;"> Check Out
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>S'H CLOTHES STORE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">S'H CLOTHES STORE</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">CLOTHES <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/userClothesList}">all the clothes</a></li>
+                    <li><a href="#">FAQ</a></li>
+
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">SEARCH <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/searchByCategory(category='shirts')}">shirts</a></li>
+                    <li><a th:href="@{/searchByCategory(category='pants')}">pants</a></li>
+                    <li><a th:href="@{/searchByCategory(category='shoes')}">shoes</a></li>
+                    <li><a th:href="@{/searchByCategory(category='coats')}">coats</a></li>
+                    <li><a th:href="@{/searchByCategory(category='skirt')}">skirt</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/ShoppingCart}">SHOPPING CART</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 style="margin-left: 75px;margin-top: 30px;">ALL PRODUCTS</h2>
+    <div class="row" style="margin-left: 60px;margin-top: 30px;">
+        <div th:if="${emptyList}">
+            <h5 style="font-style: italic;">Oops, no result is found. Try something else or try again later.</h5>
+        </div>
+        <div class="card-group" data-th-each="clothes : ${clothesList}">
+            <div class="col-sm-4 mb-1">
+                <div class="card" style="margin-bottom: 20px;">
+                    <a th:href="@{/clothesDetail?id=}+${clothes.id}">
+                        <div>
+                            <img th:src="'http://localhost:8080'+ @{/image/clothes/} + ${clothes.id} +'.png'">
+                        </div>
+
+                    </a>
+                    <div class="caption">
+                        <h4 th:text="${clothes.name}"></h4>
+                        <h4>$<span th:text="${clothes.price}"></span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>

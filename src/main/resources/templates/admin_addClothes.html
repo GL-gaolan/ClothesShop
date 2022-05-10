@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S'H CLOTHES STORE</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse">
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">S'H CLOTHES STORE</a>
+      <a class="navbar-brand" href="#">welcome admin</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" th:href="@{/admin/}">back to home</a></li>
+<!--      <li><a href="#" th:href="@{adminpro/clothesList}">View all product</a></li>-->
+      <li><a href="#" th:href="@{/}">Sign out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form class="form-horizontal" th:action="@{/admin/adminpro/add}" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <legend class="center-block"> New Product Information</legend>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" th:value="${clothes.name}"
+                   placeholder="name" required="required" name="name"/>
+            <span class="help-block">name of the product</span>
+          </div>
+
+          <div class="form-group">
+            <label for="size">Size</label>
+            <select th:value="${clothes.size}" id="size" name="size" class="form-control">
+              <option value="" selected="selected" disabled="disabled">Please select an option...</option>
+              <option value="S" th:selected="(${clothes.size}=='S')">S</option>
+              <option value="M" th:selected="(${clothes.size}=='M')">M</option>
+              <option value="L" th:selected="(${clothes.size}=='L')">L</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" class="form-control" name="price" th:value="${clothes.price}"
+                   placeholder="price" required="required"/>
+            <span class="help-block">description of the product</span>
+          </div>
+
+          <!-- category -->
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select th:value="${clothes.category}" id="category" name="category" class="form-control">
+              <option value="" selected="selected" disabled="disabled">Please select an option...</option>
+              <option value="shirts" th:selected="(${clothes.category}=='shirts')">Shirts</option>
+              <option value="coats" th:selected="(${clothes.category}=='coats')">Coats</option>
+              <option value="pants" th:selected="(${clothes.category}=='pants')">Pants</option>
+              <option value="skirts" th:selected="(${clothes.category}=='skirts')">Skirts</option>
+              <option value="shoes" th:selected="(${clothes.category}=='shoes')">Shoes</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" th:value="${clothes.description}"
+                   placeholder="description" required="required" name="description"/>
+            <span class="help-block">description of the product</span>
+          </div>
+
+          <div class="form-group">
+            <label for="clothesImage">Upload product image</label>
+            <div>
+              <input type="file" id="clothesImage" class="form-control" th:value="${clothes.clothesImage}"
+                     placeholder="clothes Image" required="required" name="clothesImage"/>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Submit</button>
+            <!--                        <button type="submit" class="btn btn-danger" th:href="@{/}">Cancel</button>-->
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/css/bootstrap.min.js"></script>
+</body>
+</html>
